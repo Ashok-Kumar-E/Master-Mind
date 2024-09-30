@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Master Mind</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <span class="title">Master Mind</span>
+
+    <div class="container">
+        <h1>Guess The Number</h1>
+        <input id="guessNumber" type="number" placeholder="Enter your guess (1-10)">
+        <button onclick="change()">Change</button>
+        <p id="result">You are Right/Wrong</p>
+        <p id="score">Score : 10</p>
+    </div>
+    
+    <p class="footer"> © 2023 Ashok Kumar, All Rights Reserved</p>
+
+    <script>
+        var guessNumber = document.getElementById("guessNumber");
+        var result = document.getElementById("result");
+        var score = document.getElementById("score");
+        var randomNumber = Math.floor(Math.random() * 10) + 1;
+        var totalScore = 10;
+
+        function change() {
+            var enteredNumber = guessNumber.value;
+            if (randomNumber == enteredNumber) {
+                console.log("Right");
+                result.textContent = "Right";
+                alert("You Won...");
+            } else {
+                totalScore = totalScore - 1;
+                score.textContent = "Score: " + totalScore;
+                result.textContent = "Wrong";
+                if (totalScore < 1) {
+                    alert("You Failed... Resetting score and number...");
+                    totalScore = 10;
+                    score.textContent = "Score: " + totalScore;
+                    randomNumber = Math.floor(Math.random() * 10) + 1;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
